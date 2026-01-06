@@ -1,0 +1,656 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MCP 服务申请</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", sans-serif;
+            line-height: 1.6;
+            color: #1a1a1a;
+            background: #f5f7fa;
+            min-height: 100vh;
+        }
+        
+        /* 顶部导航栏 */
+        .top-nav {
+            background: #ffffff;
+            border-bottom: 1px solid #e5e7eb;
+            padding: 16px 0;
+            box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+        }
+        
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.5em;
+            font-weight: 700;
+            color: #0f172a;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+        }
+        
+        .logo-icon {
+            width: 32px;
+            height: 32px;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            border-radius: 6px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: 700;
+        }
+        
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+        
+        .nav-links a {
+            color: #64748b;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+        }
+        
+        .nav-links a:hover {
+            color: #2563eb;
+        }
+        
+        /* Hero 区域 */
+        .hero {
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            color: white;
+            padding: 80px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: 
+                linear-gradient(45deg, transparent 30%, rgba(37, 99, 235, 0.1) 50%, transparent 70%),
+                linear-gradient(-45deg, transparent 30%, rgba(30, 64, 175, 0.1) 50%, transparent 70%);
+            background-size: 100px 100px;
+            animation: shimmer 20s linear infinite;
+        }
+        
+        @keyframes shimmer {
+            0% { background-position: 0 0, 0 0; }
+            100% { background-position: 100px 100px, -100px 100px; }
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 1;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .hero h1 {
+            font-size: 3em;
+            margin-bottom: 20px;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+        
+        .hero p {
+            font-size: 1.3em;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+        
+        .hero-badges {
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .badge {
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(10px);
+            padding: 8px 16px;
+            border-radius: 20px;
+            font-size: 0.9em;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+        }
+        
+        /* 主容器 */
+        .container {
+            max-width: 1200px;
+            margin: -50px auto 60px;
+            padding: 0 40px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .content {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 15px rgba(0, 0, 0, 0.05);
+            padding: 50px;
+        }
+        
+        .section {
+            margin-bottom: 50px;
+        }
+        
+        .section:last-child {
+            margin-bottom: 0;
+        }
+        
+        .section h2 {
+            color: #0f172a;
+            margin-bottom: 25px;
+            font-size: 2em;
+            font-weight: 700;
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+        
+        .section-icon {
+            width: 40px;
+            height: 40px;
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            border-radius: 8px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.2em;
+        }
+        
+        /* 表单样式 */
+        .form-group {
+            margin-bottom: 25px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: #334155;
+            font-size: 0.95em;
+        }
+        
+        .form-group input,
+        .form-group textarea,
+        .form-group select {
+            width: 100%;
+            padding: 14px 16px;
+            border: 2px solid #e2e8f0;
+            border-radius: 8px;
+            font-size: 1em;
+            transition: all 0.2s;
+            background: #ffffff;
+            font-family: inherit;
+        }
+        
+        .form-group input:focus,
+        .form-group textarea:focus,
+        .form-group select:focus {
+            outline: none;
+            border-color: #2563eb;
+            box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.1);
+        }
+        
+        .form-group textarea {
+            min-height: 130px;
+            resize: vertical;
+        }
+        
+        .btn {
+            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            color: white;
+            padding: 16px 40px;
+            border: none;
+            border-radius: 8px;
+            font-size: 1.05em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s;
+            width: 100%;
+            box-shadow: 0 4px 6px rgba(37, 99, 235, 0.2);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 8px 15px rgba(37, 99, 235, 0.3);
+        }
+        
+        .btn:active {
+            transform: translateY(0);
+        }
+        
+        /* 信息盒子 */
+        .info-box {
+            background: #f8fafc;
+            border: 1px solid #e2e8f0;
+            border-left: 4px solid #2563eb;
+            padding: 24px;
+            margin-bottom: 25px;
+            border-radius: 8px;
+        }
+        
+        .info-box h3 {
+            color: #0f172a;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .info-box p {
+            color: #475569;
+            line-height: 1.7;
+        }
+        
+        /* 代码块 */
+        .code-block {
+            background: #1e293b;
+            color: #e2e8f0;
+            padding: 24px;
+            border-radius: 10px;
+            overflow-x: auto;
+            margin: 20px 0;
+            border: 1px solid #334155;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .code-block code {
+            font-family: "SF Mono", "Monaco", "Consolas", "Courier New", monospace;
+            font-size: 0.9em;
+            white-space: pre;
+            line-height: 1.6;
+        }
+        
+        /* 特性网格 */
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .feature-card {
+            background: #ffffff;
+            padding: 28px;
+            border-radius: 10px;
+            border: 2px solid #e2e8f0;
+            transition: all 0.3s;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .feature-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #2563eb 0%, #1e40af 100%);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s;
+        }
+        
+        .feature-card:hover {
+            transform: translateY(-5px);
+            border-color: #2563eb;
+            box-shadow: 0 8px 20px rgba(37, 99, 235, 0.15);
+        }
+        
+        .feature-card:hover::before {
+            transform: scaleX(1);
+        }
+        
+        .feature-card h3 {
+            color: #0f172a;
+            margin-bottom: 12px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+        
+        .feature-card p {
+            color: #64748b;
+            line-height: 1.6;
+        }
+        
+        /* 成功消息 */
+        .success-message {
+            display: none;
+            background: #ecfdf5;
+            color: #065f46;
+            padding: 20px;
+            border-radius: 8px;
+            border: 1px solid #a7f3d0;
+            margin-top: 20px;
+            font-weight: 500;
+        }
+        
+        /* 资源链接 */
+        .info-box ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        
+        .info-box ul li {
+            padding: 10px 0;
+            border-bottom: 1px solid #e2e8f0;
+        }
+        
+        .info-box ul li:last-child {
+            border-bottom: none;
+        }
+        
+        .info-box a {
+            color: #2563eb;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.2s;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .info-box a:hover {
+            color: #1e40af;
+        }
+        
+        .info-box a::before {
+            content: '→';
+            font-weight: 700;
+        }
+        
+        /* 响应式 */
+        @media (max-width: 768px) {
+            .hero {
+                padding: 60px 20px;
+            }
+            
+            .hero h1 {
+                font-size: 2em;
+            }
+            
+            .container {
+                padding: 0 20px;
+            }
+            
+            .content {
+                padding: 30px 20px;
+            }
+            
+            .nav-container {
+                padding: 0 20px;
+            }
+            
+            .nav-links {
+                display: none;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 顶部导航栏 -->
+    <nav class="top-nav">
+        <div class="nav-container">
+            <div class="logo">
+                <div class="logo-icon">M</div>
+                MCP Platform
+            </div>
+            <div class="nav-links">
+                <a href="#intro">简介</a>
+                <a href="#config">配置</a>
+                <a href="#apply">申请</a>
+                <a href="#resources">资源</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero 区域 -->
+    <div class="hero">
+        <div class="hero-content">
+            <h1>Model Context Protocol</h1>
+            <p>企业级 AI 集成解决方案 - 安全、高效、可扩展</p>
+            <div class="hero-badges">
+                <span class="badge">🔒 企业级安全</span>
+                <span class="badge">⚡ 高性能</span>
+                <span class="badge">🔌 灵活集成</span>
+                <span class="badge">📊 实时监控</span>
+            </div>
+        </div>
+    </div>
+    
+    <div class="container">
+        <div class="content">
+            <!-- 简介部分 -->
+            <div class="section" id="intro">
+                <h2>
+                    <span class="section-icon">📖</span>
+                    平台简介
+                </h2>
+                <div class="info-box">
+                    <h3>什么是 Model Context Protocol？</h3>
+                    <p>MCP 是一个开放的标准协议，专为企业级 AI 应用设计。它使 Claude 等大型语言模型能够安全、高效地访问您的业务数据和工具系统，实现智能化的业务流程自动化。</p>
+                </div>
+                
+                <div class="feature-grid">
+                    <div class="feature-card">
+                        <h3>🔌 灵活的系统集成</h3>
+                        <p>支持 REST API、GraphQL、数据库等多种数据源，无缝对接现有业务系统</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🔒 企业级安全保障</h3>
+                        <p>细粒度权限控制、数据加密传输、完整审计日志，符合企业安全规范</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>⚡ 卓越的性能表现</h3>
+                        <p>实时数据处理、流式响应、智能缓存机制，提供极致用户体验</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>📊 全面的监控分析</h3>
+                        <p>实时性能监控、使用统计分析、异常告警机制，保障系统稳定运行</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🛠️ 丰富的工具生态</h3>
+                        <p>预构建连接器、自定义工具开发、社区共享资源，快速构建应用</p>
+                    </div>
+                    <div class="feature-card">
+                        <h3>🌐 跨平台支持</h3>
+                        <p>支持 Claude Desktop、Web、移动端，提供一致的集成体验</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- 配置示例 -->
+            <div class="section" id="config">
+                <h2>
+                    <span class="section-icon">⚙️</span>
+                    快速配置
+                </h2>
+                <p style="color: #64748b; margin-bottom: 20px;">将以下配置添加到您的 Claude 配置文件中，即可启用 MCP 服务：</p>
+                <div class="code-block">
+                    <code>{
+  "mcpServers": {
+    "enterprise-mcp": {
+      "command": "node",
+      "args": ["/path/to/mcp-server/index.js"],
+      "env": {
+        "API_KEY": "${YOUR_API_KEY}",
+        "API_ENDPOINT": "https://api.your-company.com",
+        "LOG_LEVEL": "info"
+      }
+    }
+  }
+}</code>
+                </div>
+                <div class="info-box">
+                    <h3>配置说明</h3>
+                    <p><strong>command</strong>: 服务器启动命令（支持 node、python、uvx 等）<br>
+                    <strong>args</strong>: 命令行参数，指定服务器脚本路径<br>
+                    <strong>env</strong>: 环境变量配置，包含 API 密钥等敏感信息</p>
+                </div>
+            </div>
+            
+            <!-- 申请表单 -->
+            <div class="section" id="apply">
+                <h2>
+                    <span class="section-icon">📝</span>
+                    申请企业访问权限
+                </h2>
+                <p style="color: #64748b; margin-bottom: 30px;">填写以下信息，我们的团队将在 1-2 个工作日内与您联系，为您开通专属的 MCP 服务。</p>
+                <form id="applicationForm">
+                    <div class="form-group">
+                        <label for="name">联系人姓名 *</label>
+                        <input type="text" id="name" name="name" required placeholder="请输入您的姓名">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">企业邮箱 *</label>
+                        <input type="email" id="email" name="email" required placeholder="name@company.com">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="organization">公司/组织名称 *</label>
+                        <input type="text" id="organization" name="organization" required placeholder="您所在的公司或组织全称">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="position">职位 *</label>
+                        <input type="text" id="position" name="position" required placeholder="您的职位">
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="useCase">应用场景 *</label>
+                        <select id="useCase" name="useCase" required>
+                            <option value="">请选择您的主要使用场景</option>
+                            <option value="research">科研与学术研究</option>
+                            <option value="development">软件开发与测试</option>
+                            <option value="business">业务流程自动化</option>
+                            <option value="data">数据分析与洞察</option>
+                            <option value="customer">客户服务支持</option>
+                            <option value="education">教育与培训</option>
+                            <option value="other">其他应用场景</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="teamSize">团队规模</label>
+                        <select id="teamSize" name="teamSize">
+                            <option value="">请选择</option>
+                            <option value="1-10">1-10 人</option>
+                            <option value="11-50">11-50 人</option>
+                            <option value="51-200">51-200 人</option>
+                            <option value="201-1000">201-1000 人</option>
+                            <option value="1000+">1000+ 人</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="description">项目详情 *</label>
+                        <textarea id="description" name="description" required placeholder="请详细描述您的项目背景、技术需求、预期目标等信息..."></textarea>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="github">GitHub 组织/账号（可选）</label>
+                        <input type="text" id="github" name="github" placeholder="github.com/your-organization">
+                    </div>
+                    
+                    <button type="submit" class="btn">提交申请</button>
+                    
+                    <div id="successMessage" class="success-message">
+                        ✅ 申请已成功提交！我们会在 1-2 个工作日内通过邮件与您联系。
+                    </div>
+                </form>
+            </div>
+            
+            <!-- 文档链接 -->
+            <div class="section" id="resources">
+                <h2>
+                    <span class="section-icon">📚</span>
+                    技术资源
+                </h2>
+                <div class="info-box">
+                    <ul>
+                        <li><a href="https://modelcontextprotocol.io" target="_blank">MCP 协议官方文档</a></li>
+                        <li><a href="https://github.com/modelcontextprotocol" target="_blank">GitHub 开源仓库</a></li>
+                        <li><a href="https://docs.anthropic.com" target="_blank">Claude API 开发文档</a></li>
+                        <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/mcp" target="_blank">MCP 集成指南</a></li>
+                        <li><a href="https://github.com/modelcontextprotocol/servers" target="_blank">MCP 服务器示例代码</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script>
+        document.getElementById('applicationForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // 获取表单数据
+            const formData = {
+                name: document.getElementById('name').value,
+                email: document.getElementById('email').value,
+                organization: document.getElementById('organization').value,
+                position: document.getElementById('position').value,
+                useCase: document.getElementById('useCase').value,
+                teamSize: document.getElementById('teamSize').value,
+                description: document.getElementById('description').value,
+                github: document.getElementById('github').value,
+                timestamp: new Date().toISOString()
+            };
+            
+            // 这里可以集成表单提交服务（Formspree、Google Forms 等）
+            console.log('Form Data:', formData);
+            
+            // 显示成功消息
+            document.getElementById('successMessage').style.display = 'block';
+            
+            // 滚动到成功消息
+            document.getElementById('successMessage').scrollIntoView({ behavior: 'smooth', block: 'center' });
+            
+            // 重置表单
+            this.reset();
+            
+            // 5秒后隐藏成功消息
+            setTimeout(() => {
+                document.getElementById('successMessage').style.display = 'none';
+            }, 5000);
+        });
+        
+        // 平滑滚动
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
