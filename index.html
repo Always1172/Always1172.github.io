@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>MCP 服务申请</title>
+    <title>可信数据源 MCP 服务申请</title>
     <style>
         * {
             margin: 0;
@@ -418,8 +418,8 @@
     <nav class="top-nav">
         <div class="nav-container">
             <div class="logo">
-                <div class="logo-icon">M</div>
-                MCP Platform
+                <div class="logo-icon">数</div>
+                可信数据源 MCP
             </div>
             <div class="nav-links">
                 <a href="#intro">简介</a>
@@ -433,13 +433,13 @@
     <!-- Hero 区域 -->
     <div class="hero">
         <div class="hero-content">
-            <h1>Model Context Protocol</h1>
-            <p>企业级 AI 集成解决方案 - 安全、高效、可扩展</p>
+            <h1>可信数据源 MCP</h1>
+            <p>智能检索权威数据源 - 开源、可信、易用</p>
             <div class="hero-badges">
-                <span class="badge">🔒 企业级安全</span>
-                <span class="badge">⚡ 高性能</span>
-                <span class="badge">🔌 灵活集成</span>
-                <span class="badge">📊 实时监控</span>
+                <span class="badge">🔍 智能检索</span>
+                <span class="badge">✓ 权威可信</span>
+                <span class="badge">📚 开源共享</span>
+                <span class="badge">⚡ 快速接入</span>
             </div>
         </div>
     </div>
@@ -453,34 +453,34 @@
                     平台简介
                 </h2>
                 <div class="info-box">
-                    <h3>什么是 Model Context Protocol？</h3>
-                    <p>MCP 是一个开放的标准协议，专为企业级 AI 应用设计。它使 Claude 等大型语言模型能够安全、高效地访问您的业务数据和工具系统，实现智能化的业务流程自动化。</p>
+                    <h3>什么是可信数据源 MCP？</h3>
+                    <p>可信数据源 MCP 是一个开源的数据源检索服务，通过 Model Context Protocol 为 AI 提供权威、可信的数据源查找能力。帮助用户快速找到经过验证的、高质量的数据源，确保 AI 使用准确可靠的信息。</p>
                 </div>
                 
                 <div class="feature-grid">
                     <div class="feature-card">
-                        <h3>🔌 灵活的系统集成</h3>
-                        <p>支持 REST API、GraphQL、数据库等多种数据源，无缝对接现有业务系统</p>
+                        <h3>🔍 智能检索匹配</h3>
+                        <p>基于语义理解的数据源搜索，快速找到最匹配需求的权威数据源</p>
                     </div>
                     <div class="feature-card">
-                        <h3>🔒 企业级安全保障</h3>
-                        <p>细粒度权限控制、数据加密传输、完整审计日志，符合企业安全规范</p>
+                        <h3>✓ 权威认证保障</h3>
+                        <p>精选来自政府、学术机构、行业组织等权威渠道的高质量数据源</p>
                     </div>
                     <div class="feature-card">
-                        <h3>⚡ 卓越的性能表现</h3>
-                        <p>实时数据处理、流式响应、智能缓存机制，提供极致用户体验</p>
+                        <h3>📚 开源社区驱动</h3>
+                        <p>完全开源透明，社区共建共享，持续更新维护数据源库</p>
                     </div>
                     <div class="feature-card">
-                        <h3>📊 全面的监控分析</h3>
-                        <p>实时性能监控、使用统计分析、异常告警机制，保障系统稳定运行</p>
+                        <h3>⚡ 一键快速接入</h3>
+                        <p>标准化 MCP 接口，简单配置即可将数据源接入到 Claude 等 AI 应用</p>
                     </div>
                     <div class="feature-card">
-                        <h3>🛠️ 丰富的工具生态</h3>
-                        <p>预构建连接器、自定义工具开发、社区共享资源，快速构建应用</p>
+                        <h3>🏷️ 分类标签体系</h3>
+                        <p>按领域、类型、地域等维度分类，支持标签过滤和精准查找</p>
                     </div>
                     <div class="feature-card">
-                        <h3>🌐 跨平台支持</h3>
-                        <p>支持 Claude Desktop、Web、移动端，提供一致的集成体验</p>
+                        <h3>📊 质量评分机制</h3>
+                        <p>基于更新频率、数据完整性、用户评价等多维度评估数据源质量</p>
                     </div>
                 </div>
             </div>
@@ -491,17 +491,15 @@
                     <span class="section-icon">⚙️</span>
                     快速配置
                 </h2>
-                <p style="color: #64748b; margin-bottom: 20px;">将以下配置添加到您的 Claude 配置文件中，即可启用 MCP 服务：</p>
+                <p style="color: #64748b; margin-bottom: 20px;">申请通过后，将以下配置添加到您的 Claude 配置文件中，即可启用可信数据源检索服务：</p>
                 <div class="code-block">
                     <code>{
   "mcpServers": {
-    "enterprise-mcp": {
-      "command": "node",
-      "args": ["/path/to/mcp-server/index.js"],
-      "env": {
-        "API_KEY": "${YOUR_API_KEY}",
-        "API_ENDPOINT": "https://api.your-company.com",
-        "LOG_LEVEL": "info"
+    "datasource_hub": {
+      "type": "http",
+      "url": "${DATASOURCE_HUB_URL:-http://localhost:8001/mcp}",
+      "headers": {
+        "Authorization": "Bearer ${DATASOURCE_HUB_TOKEN}"
       }
     }
   }
@@ -509,9 +507,10 @@
                 </div>
                 <div class="info-box">
                     <h3>配置说明</h3>
-                    <p><strong>command</strong>: 服务器启动命令（支持 node、python、uvx 等）<br>
-                    <strong>args</strong>: 命令行参数，指定服务器脚本路径<br>
-                    <strong>env</strong>: 环境变量配置，包含 API 密钥等敏感信息</p>
+                    <p><strong>type</strong>: HTTP 类型的 MCP 服务器<br>
+                    <strong>url</strong>: 数据源服务地址，支持通过环境变量配置<br>
+                    <strong>Authorization</strong>: 访问令牌，通过下方申请表单获取<br>
+                    <strong>⚠️ 重要</strong>: 申请通过后，我们会通过邮件发送您的专属 Token</p>
                 </div>
             </div>
             
@@ -519,9 +518,9 @@
             <div class="section" id="apply">
                 <h2>
                     <span class="section-icon">📝</span>
-                    申请企业访问权限
+                    申请MCP token
                 </h2>
-                <p style="color: #64748b; margin-bottom: 30px;">填写以下信息，我们的团队将在 1-2 个工作日内与您联系，为您开通专属的 MCP 服务。</p>
+                <p style="color: #64748b; margin-bottom: 30px;">填写以下信息，我们将在 1-2 个工作日内与您联系，协助您接入可信数据源 MCP 服务。</p>
                 <form id="applicationForm">
                     <div class="form-group">
                         <label for="name">联系人姓名 *</label>
@@ -547,13 +546,14 @@
                         <label for="useCase">应用场景 *</label>
                         <select id="useCase" name="useCase" required>
                             <option value="">请选择您的主要使用场景</option>
-                            <option value="research">科研与学术研究</option>
-                            <option value="development">软件开发与测试</option>
-                            <option value="business">业务流程自动化</option>
-                            <option value="data">数据分析与洞察</option>
-                            <option value="customer">客户服务支持</option>
-                            <option value="education">教育与培训</option>
-                            <option value="other">其他应用场景</option>
+                            <option value="research">科研数据查询</option>
+                            <option value="market">市场数据分析</option>
+                            <option value="government">政府公开数据</option>
+                            <option value="finance">金融数据服务</option>
+                            <option value="medical">医疗健康数据</option>
+                            <option value="education">教育培训资源</option>
+                            <option value="social">社会统计数据</option>
+                            <option value="other">其他数据需求</option>
                         </select>
                     </div>
                     
@@ -570,8 +570,8 @@
                     </div>
                     
                     <div class="form-group">
-                        <label for="description">项目详情 *</label>
-                        <textarea id="description" name="description" required placeholder="请详细描述您的项目背景、技术需求、预期目标等信息..."></textarea>
+                        <label for="description">数据需求描述 *</label>
+                        <textarea id="description" name="description" required placeholder="请详细描述您需要的数据源类型、应用场景、数据要求等信息..."></textarea>
                     </div>
                     
                     <div class="form-group">
@@ -582,7 +582,7 @@
                     <button type="submit" class="btn">提交申请</button>
                     
                     <div id="successMessage" class="success-message">
-                        ✅ 申请已成功提交！我们会在 1-2 个工作日内通过邮件与您联系。
+                        ✅ 申请已成功提交！我们会在 1-2 个工作日内通过邮件与您联系，协助您接入可信数据源服务。
                     </div>
                 </form>
             </div>
@@ -609,7 +609,7 @@
     <script>
         // 配置后端API地址
         // const API_URL = 'http://localhost:8000/api/apply';  // 本地测试
-        const API_URL = 'https://martin-specifies-standard-petersburg.trycloudflare.com/api/apply';  // Cloudflare Tunnel公网地址
+        const API_URL = 'https://centered-repeat-dow-locate.trycloudflare.com/api/apply';  // Cloudflare Tunnel公网地址
         // const API_URL = 'https://your-server.com/api/apply';  // 生产环境服务器
 
         document.getElementById('applicationForm').addEventListener('submit', async function(e) {
