@@ -55,7 +55,10 @@
         .logo-icon-text {
             width: 32px;
             height: 32px;
-            background: linear-gradient(135deg, #2563eb 0%, #1e40af 100%);
+            background-image: url('https://www.mininglamp.com/wp-content/uploads/2025/09/DM_Launch.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             border-radius: 6px;
             display: flex;
             align-items: center;
@@ -82,7 +85,10 @@
         
         /* Hero 区域 */
         .hero {
-            background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+            background-image: url('./DM_Launch.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
             color: white;
             padding: 80px 40px;
             text-align: center;
@@ -90,30 +96,12 @@
             overflow: hidden;
         }
         
-        .hero::before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            bottom: 0;
-            background: 
-                linear-gradient(45deg, transparent 30%, rgba(37, 99, 235, 0.1) 50%, transparent 70%),
-                linear-gradient(-45deg, transparent 30%, rgba(30, 64, 175, 0.1) 50%, transparent 70%);
-            background-size: 100px 100px;
-            animation: shimmer 20s linear infinite;
-        }
-        
-        @keyframes shimmer {
-            0% { background-position: 0 0, 0 0; }
-            100% { background-position: 100px 100px, -100px 100px; }
-        }
-        
         .hero-content {
             position: relative;
             z-index: 1;
             max-width: 800px;
             margin: 0 auto;
+            transform: translateX(-300px);
         }
         
         .hero h1 {
@@ -443,12 +431,12 @@
         <div class="hero-content">
             <h1>可信数据源 MCP</h1>
             <p>智能检索权威数据源 - 开源、可信、易用</p>
-            <div class="hero-badges">
+            <!-- <div class="hero-badges">
                 <span class="badge">🔍 智能检索</span>
                 <span class="badge">✓ 权威可信</span>
                 <span class="badge">📚 开源共享</span>
                 <span class="badge">⚡ 快速接入</span>
-            </div>
+            </div> -->
         </div>
     </div>
     
@@ -582,34 +570,12 @@
                         <textarea id="description" name="description" required placeholder="请详细描述您需要的数据源类型、应用场景、数据要求等信息..."></textarea>
                     </div>
                     
-                    <div class="form-group">
-                        <label for="github">GitHub 组织/账号（可选）</label>
-                        <input type="text" id="github" name="github" placeholder="github.com/your-organization">
-                    </div>
-                    
                     <button type="submit" class="btn">提交申请</button>
                     
                     <div id="successMessage" class="success-message">
                         ✅ 申请已成功提交！我们会在 1-2 个工作日内通过邮件与您联系，协助您接入可信数据源服务。
                     </div>
                 </form>
-            </div>
-            
-            <!-- 文档链接 -->
-            <div class="section" id="resources">
-                <h2>
-                    <span class="section-icon">📚</span>
-                    技术资源
-                </h2>
-                <div class="info-box">
-                    <ul>
-                        <li><a href="https://modelcontextprotocol.io" target="_blank">MCP 协议官方文档</a></li>
-                        <li><a href="https://github.com/modelcontextprotocol" target="_blank">GitHub 开源仓库</a></li>
-                        <li><a href="https://docs.anthropic.com" target="_blank">Claude API 开发文档</a></li>
-                        <li><a href="https://docs.anthropic.com/en/docs/build-with-claude/mcp" target="_blank">MCP 集成指南</a></li>
-                        <li><a href="https://github.com/modelcontextprotocol/servers" target="_blank">MCP 服务器示例代码</a></li>
-                    </ul>
-                </div>
             </div>
         </div>
     </div>
