@@ -1,17 +1,23 @@
+import { useState } from "react"
 import { Navigation } from "./components/Navigation"
 import { Hero } from "./components/Hero"
 import { InfoSection } from "./components/InfoSection"
 import { ApplicationForm } from "./components/ApplicationForm"
+import { HeroEN } from "./components/HeroEN"
+import { InfoSectionEN } from "./components/InfoSectionEN"
+import { ApplicationFormEN } from "./components/ApplicationFormEN"
 
 function App() {
+  const [language, setLanguage] = useState<"zh" | "en">("zh")
+
   return (
     <div className="relative flex min-h-screen flex-col">
-      <Navigation />
+      <Navigation language={language} onLanguageChange={setLanguage} />
       <main className="flex-1">
-        <Hero />
+        {language === "zh" ? <Hero /> : <HeroEN />}
 
         <section className="container py-8 md:py-12 lg:py-16">
-          <InfoSection />
+          {language === "zh" ? <InfoSection /> : <InfoSectionEN />}
         </section>
 
         <section id="apply" className="border-t bg-muted/50 scroll-mt-20">
@@ -19,13 +25,15 @@ function App() {
             <div className="mx-auto max-w-3xl">
               <div className="mb-6 flex flex-col gap-2 text-center">
                 <h2 className="text-3xl font-bold tracking-tight sm:text-4xl">
-                  开始使用
+                  {language === "zh" ? "开始使用" : "Get Started"}
                 </h2>
                 <p className="text-lg text-muted-foreground">
-                  立即申请 MCP Token，让您的 AI 应用接入可信数据源
+                  {language === "zh"
+                    ? "立即申请 MCP Token，让您的 AI 应用接入可信数据源"
+                    : "Apply for MCP Token now to connect your AI application to trusted data sources"}
                 </p>
               </div>
-              <ApplicationForm />
+              {language === "zh" ? <ApplicationForm /> : <ApplicationFormEN />}
             </div>
           </div>
         </section>
