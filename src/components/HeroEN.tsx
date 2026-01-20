@@ -14,7 +14,7 @@ export function HeroEN() {
       {/* Content */}
       <div className="container relative z-10 h-full min-h-[500px] flex items-center py-12">
         <div className="flex max-w-[42rem] flex-col items-center gap-3 text-center">
-          <Badge variant="secondary" className="mb-1 text-xl bg-white/90 text-primary hover:bg-white/95">
+          <Badge variant="secondary" className="mb-1 text-xl bg-white/90 text-primary hover:bg-white/90">
             Open Source · Trusted · Easy to Use
           </Badge>
 
